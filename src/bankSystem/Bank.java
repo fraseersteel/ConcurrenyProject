@@ -3,17 +3,15 @@ package bankSystem;
 import java.util.ArrayList;
 
 public class Bank {
-	ArrayList<Customer> customers = new ArrayList<Customer>();
-	ArrayList<Employee> employees = new ArrayList<Employee>();
-	ArrayList<IAccount> all_accounts = new ArrayList<IAccount>();
+	ArrayList<Customer> customers = new ArrayList<Customer>();      //Any classes in the package can access this without protection
+	ArrayList<Employee> employees = new ArrayList<Employee>();      //Any classes in the package can access this without protection
+	ArrayList<IAccount> all_accounts = new ArrayList<IAccount>();   //Any classes in the package can access this without protection
 	
 	void addCustomer(Customer customer){
 		synchronized (this){
 		customers.add(customer);
-		
 		customer.setId(customers.size()+1000);
 		}
-		
 	}
 	
 	synchronized Customer getCustomer(int id){
@@ -27,8 +25,6 @@ public class Bank {
 	void addEmployee(Employee e){
 		synchronized (this){
 		employees.add(e);
-		
-		
 		e.setId(employees.size());
 		}
 	}
@@ -44,9 +40,6 @@ public class Bank {
 	synchronized void  addAccount(IAccount acc){
 		all_accounts.add(acc);
 	}
-	
-
-	
 	
 	synchronized ArrayList<Customer> getCustomers() {
 		return customers;
