@@ -17,8 +17,6 @@ public Customer (String name, Bank bank) {
 	this.name=name;
 	this.bank=bank;
 	bank.addCustomer(this);
-	
-	
 }
 
 public synchronized String getName() {

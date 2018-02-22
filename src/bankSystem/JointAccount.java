@@ -25,7 +25,6 @@ public class JointAccount implements IAccount {
 
     @Override
     public synchronized double getBalance() {
-
         return balance;
     }
 
@@ -38,28 +37,23 @@ public class JointAccount implements IAccount {
 
     @Override
     public synchronized int getAccId() {
-
         return accID;
     }
 
     public synchronized void setAccId(int id) {
-
         this.accID = id;
     }
 
     @Override
     public synchronized int getCustId() {
-
         return custID;
     }
 
     public synchronized void setCustId(int id) {
-
         this.custID = id;
     }
 
     public synchronized void setCustId_2(int id) {
-
         this.custID_2 = id;
     }
 
@@ -73,11 +67,9 @@ public class JointAccount implements IAccount {
                 if (!waiting)
                     Thread.currentThread().interrupt();
                 waiting = enoughFunds.await(5, TimeUnit.SECONDS);
-
             }
 
             balance = balance - d;
-
 
         } finally {
             lock.unlock();
@@ -90,7 +82,6 @@ public class JointAccount implements IAccount {
         lock.lock();
         lockCount++;
         try {
-
             balance = balance + d;
             enoughFunds.signalAll();
 
@@ -109,7 +100,6 @@ public class JointAccount implements IAccount {
         try {
             acc.withdraw(value);
             acc2.deposit(value);
-
         } finally {
             lock.unlock();
         }
@@ -117,7 +107,6 @@ public class JointAccount implements IAccount {
 
     @Override
     public int getCustId_2() {
-
         return custID_2;
     }
 

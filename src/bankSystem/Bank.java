@@ -8,9 +8,10 @@ public class Bank {
 	ArrayList<IAccount> all_accounts = new ArrayList<IAccount>();   //Any classes in the package can access this without protection
 	
 	void addCustomer(Customer customer){
+
 		synchronized (this){
-		customers.add(customer);
-		customer.setId(customers.size()+1000);
+            customers.add(customer);
+		    customer.setId(customers.size()+1000);
 		}
 	}
 	
