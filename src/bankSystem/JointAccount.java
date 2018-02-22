@@ -13,11 +13,13 @@ public class JointAccount implements IAccount {
     public int custID_2;
     private Lock lock;
     private Condition enoughFunds;
+    private int lockCount;
 
     public JointAccount(double bal) {
         this.balance = bal;
         lock = new ReentrantLock();
         enoughFunds = lock.newCondition();
+        lockCount=0;
 
     }
 
@@ -65,6 +67,7 @@ public class JointAccount implements IAccount {
     public void withdraw(double d) throws InterruptedException {
         boolean waiting = true;
         lock.lock();
+        lockCount++;
         try {
             while (balance < d) {
                 if (!waiting)
@@ -85,6 +88,7 @@ public class JointAccount implements IAccount {
     @Override
     public void deposit(double d) {
         lock.lock();
+        lockCount++;
         try {
 
             balance = balance + d;
@@ -101,6 +105,7 @@ public class JointAccount implements IAccount {
 
         }
         lock.lock();
+        lockCount++;
         try {
             acc.withdraw(value);
             acc2.deposit(value);
