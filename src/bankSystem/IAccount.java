@@ -10,6 +10,7 @@ public interface IAccount {
 	public void setCustId_2(int id);
 	public int getCustId();
 	public int getCustId_2();
+	public int getLockCount();
 	
 	public void withdraw(double d) throws InterruptedException;
 	public void deposit(double d);

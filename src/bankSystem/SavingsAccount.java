@@ -12,11 +12,13 @@ public class SavingsAccount implements IAccount {
 	public int custID;
 	private Lock lock;
 	private Condition enoughFunds;
+	private int lockCount;
 
 	public SavingsAccount(double balance) {
 		this.balance = balance;
 		lock = new ReentrantLock();
 		enoughFunds = lock.newCondition();
+		lockCount =0;
 	}
 
 	@Override
@@ -71,6 +73,7 @@ public class SavingsAccount implements IAccount {
 	public synchronized void withdraw(double d) throws InterruptedException {
 		boolean waiting = true;
 		lock.lock();
+		lockCount++;
 		try {
 			while (balance<d) {
 				if (!waiting) 
@@ -89,6 +92,7 @@ public class SavingsAccount implements IAccount {
 	@Override
 	public synchronized void deposit(double d) {
 		lock.lock();
+		lockCount++;
 		try {
 			
 			balance=balance+d;
@@ -105,6 +109,7 @@ public class SavingsAccount implements IAccount {
 			
 		}
 		lock.lock();
+		lockCount++;
 		try {
 			acc.withdraw(value);
 			acc2.deposit(value);
@@ -119,6 +124,11 @@ public class SavingsAccount implements IAccount {
 	public int getCustId_2() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getLockCount() {
+		return lockCount;
 	}
 
 	@Override

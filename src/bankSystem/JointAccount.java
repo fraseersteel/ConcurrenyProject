@@ -121,5 +121,10 @@ public class JointAccount implements IAccount {
         return custID_2;
     }
 
+    @Override
+    public int getLockCount() {
+        return lockCount;
+    }
+
 
 }

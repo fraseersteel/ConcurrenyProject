@@ -112,6 +112,11 @@ public synchronized void setCustId(int id) {
 	}
 
 	@Override
+	public int getLockCount() {
+		return lockCount;
+	}
+
+	@Override
 	public void setCustId_2(int id) {
 		// TODO Auto-generated method stub
 		

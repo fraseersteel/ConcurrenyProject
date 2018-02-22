@@ -10,7 +10,6 @@ public class Runnable6 implements Runnable {
 	 }
 	 public void run () {
 		 try {
-			 
 			 Thread.sleep(DELAY);
 			 System.out.println("Depositing money by " + cust.getName());
 			 cust.getAccounts().get(0).deposit(3000);
