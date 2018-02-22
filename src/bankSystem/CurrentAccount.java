@@ -12,12 +12,15 @@ public class CurrentAccount implements IAccount {
 	public int custID;
 	private Lock lock;
 	private Condition enoughFunds;
+	private int lockCount;
 
 	public CurrentAccount(double bal) {
 		this.balance = bal;
 		lock = new ReentrantLock();
 		enoughFunds = lock.newCondition();
-		
+		lockCount=0;
+
+
 		//this.accID=accID;
 //		this.custID=custID;
 	}
@@ -55,6 +58,7 @@ public synchronized void setCustId(int id) {
 	public void withdraw(double d) throws InterruptedException {
 		boolean waiting = true;
 		lock.lock();
+		lockCount++;
 		try {
 			while (balance<d) {
 				if (!waiting) 
@@ -73,6 +77,7 @@ public synchronized void setCustId(int id) {
 	@Override
 	public void deposit(double d) {
 		lock.lock();
+		lockCount++;
 		try {
 			
 			balance=balance+d;
@@ -89,6 +94,7 @@ public synchronized void setCustId(int id) {
 			
 		}
 		lock.lock();
+		lockCount++;
 		try {
 			acc.withdraw(value);
 			acc2.deposit(value);
