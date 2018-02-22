@@ -5,6 +5,13 @@ import bankSystem.*;
 public class Driver4 {
 
     public static void main(String[] args) {
+        System.out.println("Concurrent check of balance then customer withdraw then employee withdraw in Driver 4, " +
+                "Thread: "+Thread.currentThread().getName());
+        System.out.println("Initial balance: 1000");
+        System.out.println("One account, two customers and an employee, " +
+                "john(customer) depositing 3000 and checking balance [Runnable 6], " +
+                "alex(customer) withdrawing 500 and checking balance [Runnable 5] and" +
+                "sam(employee) withdrawing 500 - no balance check [Runnable 4]");
 
         Bank bank = new Bank();
 
@@ -23,7 +30,7 @@ public class Driver4 {
         //runnable withdrawing from the balance and checking
         Runnable5 draw_check = new Runnable5(c1);
         //runnable for employee withdrawing money
-        //note - the runnable deposits into the customer's first account in the array
+        //note - the runnable deposits into the customer's first account in the array  *EDIT CW - Does not deposit anything*
         Runnable4 employee_withdraw = new Runnable4(e, c);
 
 

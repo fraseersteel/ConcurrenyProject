@@ -6,6 +6,13 @@ public class Driver5 {
 
     public static void main(String[] args) {
 
+        System.out.println("Concurrent check of balance then withdrawal then deposit in Driver 5, " +
+                "Thread: "+Thread.currentThread().getName());
+        System.out.println("Initial balance: 1000");
+        System.out.println("One account, two customers, " +
+                "john checking balance [Runnable 1], " +
+                "alex withdrawing 500 [Runnable 2]," +
+                "john depositing 1000 [Runnable 3]");
 
         Bank bank = new Bank();
 

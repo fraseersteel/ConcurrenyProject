@@ -12,6 +12,7 @@ public class Runnable4 implements Runnable {
     }
 
     public void run() {
+        System.out.println("Employee Withdraw 600 Runnable [Runnable 4] started.");
         try {
 
             Thread.sleep(DELAY);
@@ -20,7 +21,7 @@ public class Runnable4 implements Runnable {
 
 
         } catch (Exception e) {
+
         }
     }
-
 }

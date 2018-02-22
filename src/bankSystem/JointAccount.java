@@ -19,8 +19,7 @@ public class JointAccount implements IAccount {
         this.balance = bal;
         lock = new ReentrantLock();
         enoughFunds = lock.newCondition();
-        lockCount=0;
-
+        lockCount = 0;
     }
 
     @Override

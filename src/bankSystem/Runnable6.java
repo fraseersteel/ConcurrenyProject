@@ -9,6 +9,7 @@ public class Runnable6 implements Runnable {
 		 cust=c;
 	 }
 	 public void run () {
+         System.out.println("Customer Deposit 3000 then Check Balance Runnable [Runnable 6] started.");
 		 try {
 			 Thread.sleep(DELAY);
 			 System.out.println("Depositing money by " + cust.getName());
@@ -16,9 +17,9 @@ public class Runnable6 implements Runnable {
 			
 			 System.out.println(cust.getName() + " checks the balance and it's " + cust.getAccounts().get(0).getBalance());
 			 
-			 
 		 }
-		 catch (Exception e){}
+		 catch (Exception e){
+
+         }
 	 }
-	 
-	}
+}

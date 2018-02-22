@@ -5,6 +5,9 @@ import bankSystem.*;
 public class Driver2 {
 
     public static void main(String[] args) {
+        System.out.println("Concurrent check of balance then withdraw in Driver 2, Thread: "+Thread.currentThread().getName());
+        System.out.println("Initial balance: 1000");
+        System.out.println("One account, john checking balance [Runnable 1], alex withdrawing 500 [Runnable 2].");
 
         Bank bank = new Bank();
 
