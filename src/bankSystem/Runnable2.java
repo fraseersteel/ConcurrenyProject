@@ -15,8 +15,6 @@ public class Runnable2 implements Runnable {
 			 System.out.println("Withdrawing money by " + cust.getName());
 			 cust.getAccounts().get(0).withdraw(500);
 
-
-			
 			 
 			 
 		 }

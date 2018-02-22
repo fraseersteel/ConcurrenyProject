@@ -63,28 +63,28 @@ public class Main {
 	    	
 	    	
 	    	//two account holders checking the balance
-	    //	t1.start();
-	   // 	t2.start();
-	    	//one is checking balance, one is withdrawing
-//	    	t3.start();
-//	    	t4.start();
-	    	//one is depositing and checking balance, the other is withdrawing and checking balance
-  //       t5.start();
-   //       t6.start();
-	    	//one is depositing and checking balance, the other is withdrawing and checking balance
-	    	//and an employee is doing a withdraw
-//         t5.start();
-//	    	t6.start();
-//	    	t7.start();
-			//Insufficient funds
-			//For a deposit to be made in time, change runnable1’s delay to 8000 and runnable3’s delay to 3000, runnable2’s withdraw value to 1500.
-			//For a deposit to not be made in time, change runnable1’s delay to 8000 and runnable3’s delay to 7000, runnable2’s withdraw value to 1500.
-//	    	t4.start();
-//	    	t8.start();
-//	    	t1.start();
-            //two employees are trying to change account details simultaneously 
-	    	//t9.start();
-	    	//t10.start();
+	    	t1.start();
+	    	t2.start();
+//	    	one is checking balance, one is withdrawing
+	    	t3.start();
+	    	t4.start();
+//	    	one is depositing and checking balance, the other is withdrawing and checking balance
+         t5.start();
+          t6.start();
+//	    	one is depositing and checking balance, the other is withdrawing and checking balance
+//	    	and an employee is doing a withdraw
+         t5.start();
+	    	t6.start();
+	    	t7.start();
+//			Insufficient funds
+//			For a deposit to be made in time, change runnable1’s delay to 8000 and runnable3’s delay to 3000, runnable2’s withdraw value to 1500.
+//			For a deposit to not be made in time, change runnable1’s delay to 8000 and runnable3’s delay to 7000, runnable2’s withdraw value to 1500.
+	    	t4.start();
+	    	t8.start();
+	    	t1.start();
+//            two employees are trying to change account details simultaneously
+	    	t9.start();
+	    	t10.start();
 	    	
 	    	
 	    	
