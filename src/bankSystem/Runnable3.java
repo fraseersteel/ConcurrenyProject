@@ -10,7 +10,8 @@ public class Runnable3 implements Runnable {
 	 }
 
 	 public void run () {
-         System.out.println("Deposit 1000 Runnable [Runnable 3] started.");
+         System.out.println("Deposit 1000 Runnable [Runnable 3] started. Thread: "
+         + Thread.currentThread().getName());
 		 try {
 			 
 			 Thread.sleep(DELAY);

@@ -11,7 +11,8 @@ public class Runnable1 implements Runnable {
     }
 
     public void run() {
-        System.out.println("Check Balance Runnable [Runnable 1] started.");
+        System.out.println("Check Balance Runnable [Runnable 1] started. Thread: "
+        + Thread.currentThread().getName());
         try {
 
             Thread.sleep(DELAY);

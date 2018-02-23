@@ -9,7 +9,8 @@ public class Runnable5 implements Runnable {
 		 cust=c;
 	 }
 	 public void run () {
-         System.out.println("Customer Withdraw 500 then Check Balance Runnable [Runnable 5] started.");
+         System.out.println("Customer Withdraw 500 then Check Balance Runnable [Runnable 5] started."
+         + "Thread: " + Thread.currentThread().getName());
 		 try {
 			 
 			 Thread.sleep(DELAY);
