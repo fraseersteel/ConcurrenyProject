@@ -29,11 +29,6 @@ public class Driver3 {
 
 
         t5.start();
-        try {
-            t5.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         t6.start();
     }
 }

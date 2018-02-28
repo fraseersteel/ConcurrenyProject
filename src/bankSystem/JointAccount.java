@@ -1,5 +1,8 @@
 package bankSystem;
 
+import coverage.LockTracker;
+
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -14,23 +17,37 @@ public class JointAccount implements IAccount {
     private Lock lock;
     private Condition enoughFunds;
     private int lockCount;
+    private LockTracker lockTracker;
 
     public JointAccount(double bal) {
         this.balance = bal;
         lock = new ReentrantLock();
         enoughFunds = lock.newCondition();
         lockCount = 0;
+        lockTracker = new LockTracker();
     }
 
     @Override
-    public synchronized double getBalance() {
-        return balance;
+    public double getBalance() {
+        lock.lock();
+        lockTracker.setCurrentLocks(LockTracker.Locks.GetBalance);
+        try{
+            return balance;
+        } finally{
+           lock.unlock();
+        }
     }
 
     @Override
 
-    public synchronized double setBalance(double bal) {
-        return this.balance = bal;
+    public double setBalance(double bal) {
+        lock.lock();
+        lockTracker.setCurrentLocks(LockTracker.Locks.SetBalance);
+        try{
+            return this.balance = bal;
+        } finally {
+            lock.unlock();
+        }
     }
 
 
@@ -60,6 +77,7 @@ public class JointAccount implements IAccount {
     public void withdraw(double d) throws InterruptedException {
         boolean waiting = true;
         lock.lock();
+        lockTracker.setCurrentLocks(LockTracker.Locks.Withdraw);
         lockCount++;
         try {
             while (balance < d) {
@@ -79,6 +97,7 @@ public class JointAccount implements IAccount {
     @Override
     public void deposit(double d) {
         lock.lock();
+        lockTracker.setCurrentLocks(LockTracker.Locks.Deposit);
         lockCount++;
         try {
             balance = balance + d;
@@ -91,10 +110,8 @@ public class JointAccount implements IAccount {
 
     public void transfer(IAccount acc, IAccount acc2, double value) throws InterruptedException {
         //transfers value from acc to to acc2
-        synchronized (this) {
-
-        }
         lock.lock();
+        lockTracker.setCurrentLocks(LockTracker.Locks.Transfer);
         lockCount++;
         try {
             acc.withdraw(value);
