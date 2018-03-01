@@ -26,7 +26,7 @@ printResults();
 
         //Check if we already have the pair (current, newLock) or (newLock, current). Add them if we do not.
         for (Locks[] lock : lockList) {
-            if ((lock[0].equals(current) && lock[1].equals(newLock)) || (lock[1].equals(current) && lock[0].equals(newLock))) {
+            if ((lock[0].equals(current) && lock[1].equals(newLock))) {
 
                 System.out.println("Naughty: " +  current + " " +newLock);
                 return;
