@@ -40,7 +40,9 @@ public class CoverageDriver {
         System.out.print(" locks ");
         lockTracker.printResults();
 
-        System.out.println("coverage result it: ");
+        System.out.println("coverage result it: " + lockTracker.getCoverageScore());
+
+
 
 
     }

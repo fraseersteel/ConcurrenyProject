@@ -6,10 +6,12 @@ public class LockTracker {
 
    private Locks currentLocks;
     private static ArrayList<Locks[]> lockList;
+    private int lockCount;
 
     public LockTracker() {
         currentLocks = Locks.NoLock;
         lockList = new ArrayList<>();
+        lockCount = 0;
  }
 
     public void setCurrentLocks(Locks newLocks) {
@@ -40,6 +42,7 @@ printResults();
         newPair[1] = newLock;
 
         lockList.add(newPair);
+        lockCount++;
 
 
 
@@ -64,6 +67,11 @@ printResults();
 
     public enum Locks {
         GetBalance, SetBalance, Withdraw, Deposit, Transfer, NoLock
+    }
+
+
+    public double getCoverageScore(){
+        return lockCount;
     }
 
 
