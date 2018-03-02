@@ -44,7 +44,7 @@ printResults();
         lockList.add(newPair);
         lockCount++;
 
-
+        System.out.println("Lock count: " + getLockCount());
 
     }
 
@@ -61,7 +61,6 @@ printResults();
             System.out.println(locks[0] + " & " + locks[1]);
         }
 
-
         System.out.println("--------------------------");
     }
 
@@ -70,9 +69,15 @@ printResults();
     }
 
 
-    public double getCoverageScore(){
+    public int getLockCount(){
         return lockCount;
     }
 
+
+    public double getCoverageScore(){
+        double score=0;
+
+        return score;
+    }
 
 }
