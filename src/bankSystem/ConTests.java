@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,12 +16,12 @@ import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class ConTests {
 
+    final static int RUN_X_TIMES = 10;
     public CurrentAccount jointAccount;
     Customer c1;
     Customer c2;
     Employee e;
     Bank bank;
-    final static int RUN_X_TIMES=10;
 
     @Parameterized.Parameters
     public static List<Object[]> data() {
@@ -28,14 +29,14 @@ public class ConTests {
     }
 
     @Before
-    public synchronized void build() {
+    public  void build() {
         jointAccount = new CurrentAccount(1000);
 
 
         bank = new Bank();
         e = new Employee("Dean", bank);
         c1 = new Customer("John", bank);
-        c2 = new Customer("Fraser", bank);
+        c2 = c1;
 
 
         c1.openAccount(jointAccount);
@@ -43,7 +44,7 @@ public class ConTests {
     }
 
     @Test
-    public synchronized void driver1Test() throws InterruptedException {
+    public  void driver1Test() throws InterruptedException {
         //runnable checking the account balance
         Runnable1 check_bal = new Runnable1(c1);
         Runnable1 check_bal2 = new Runnable1(c2);
@@ -64,7 +65,7 @@ public class ConTests {
 
 
     @Test
-    public synchronized void driver2Test() throws InterruptedException {
+    public  void driver2Test() throws InterruptedException {
         //runnable checking the account balance
         Runnable1 check_bal = new Runnable1(c1);
 
@@ -73,21 +74,24 @@ public class ConTests {
 
         Thread t3 = new Thread(check_bal);
         Thread t4 = new Thread(draw);
+        Thread t5 = new Thread(draw);
+        Thread t6 = new Thread(draw);
 
         t3.start();
         t4.start();
-
-        while (t3.isAlive() || t4.isAlive()) {
+        t5.start();
+        t6.start();
+        while (t3.isAlive() || t4.isAlive() || t5.isAlive() || t6.isAlive()) {
             //Thread.sleep(1000);
 
         }
-        assertEquals(1000, jointAccount.balance, 0);
+        assertEquals(0, jointAccount.balance, 0);
     }
 
     //test 2 - one customer tries to check the balance whilst another is depositing money
 
     @Test
-    public synchronized void driver3Test() throws InterruptedException {
+    public  void driver3Test() throws InterruptedException {
         //runnable withdrawing from the balance and checking
         Runnable5 draw_check = new Runnable5(c1);
 
@@ -106,13 +110,13 @@ public class ConTests {
             //Thread.sleep(1000);
 
         }
-        assertEquals(500, jointAccount.balance, 0);
+        assertEquals(3500, jointAccount.balance, 0);
     }
 
     //test 3 - one customer customer withdraws whilst another user is depositing money
 
     @Test
-    public synchronized void driver4Test() throws InterruptedException {
+    public  void driver4Test() throws InterruptedException {
 
         //runnable depositing money and checking
         Runnable6 deposit_check = new Runnable6(c1);
@@ -141,7 +145,7 @@ public class ConTests {
 //	    	and an employee is also doing a withdraw
 
     @Test
-    public synchronized void driver5Test() throws InterruptedException {
+    public   void driver5Test() throws InterruptedException {
         Runnable1 check_bal = new Runnable1(c1);
         //runnable withdrawing from the balance
         Runnable2 draw = new Runnable2(c2);
@@ -161,14 +165,15 @@ public class ConTests {
             //Thread.sleep(1000);
 
         }
-        assertEquals(2000, jointAccount.balance, 0);
+        assertEquals(1500, jointAccount.balance, 0);
 
     }
+
 
     // test 5 - check balance - withdraw - deposit
 
     @Test
-    public synchronized void driver6Test() {
+    public  void driver6Test() {
         Employee e1 = new Employee("Fraser Steel", bank);
         Employee e2 = new Employee("eliot", bank);
 
@@ -185,6 +190,7 @@ public class ConTests {
     }
 
     // test 6 - two employees changing details
+
 
 
 }
