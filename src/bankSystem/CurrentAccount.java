@@ -29,7 +29,7 @@ public class CurrentAccount implements IAccount {
 		return balance;
 	}
 	@Override
-	public synchronized double setBalance(double bal) {
+	public synchronized  double setBalance(double bal) {
 		return this.balance= bal;
 	}
 	
@@ -93,6 +93,7 @@ public class CurrentAccount implements IAccount {
 			lock.unlock();
 		}
 	}
+
 
 	@Override
 	public int getCustId_2() {
