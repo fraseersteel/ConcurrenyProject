@@ -66,9 +66,11 @@ public class CurrentAccount implements IAccount {
             }
 
             balance = balance - d;
-        } finally {
-            lock.unlock();
         }
+        /* removing finally unlock RFU, mutation */
+        /finally {
+            lock.unlock();
+        } 
 
     }
 

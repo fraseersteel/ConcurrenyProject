@@ -1,3 +1,4 @@
+
 package coverage;
 
 import java.util.ArrayList;
@@ -6,14 +7,12 @@ public class LockTracker {
 
    private Locks currentLocks;
     private static ArrayList<Locks[]> lockList;
-    private int lockCount = 0;
-    private int possibleLockPairs;
+    private int lockCount;
 
     public LockTracker() {
         currentLocks = Locks.NoLock;
         lockList = new ArrayList<>();
-        //there are 10 possible lock pairs in the joint account class
-        possibleLockPairs = 10;
+        lockCount = 0;
  }
 
     public void setCurrentLocks(Locks newLocks) {
@@ -77,10 +76,8 @@ printResults();
 
 
     public double getCoverageScore(){
-        double score;
+        double score=0;
 
-        System.out.println(getLockCount());
-        score = (lockCount/possibleLockPairs)*100;
         return score;
     }
 
