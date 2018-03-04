@@ -6,12 +6,14 @@ public class LockTracker {
 
    private Locks currentLocks;
     private static ArrayList<Locks[]> lockList;
-    private int lockCount;
+    private int lockCount = 0;
+    private int possibleLockPairs;
 
     public LockTracker() {
         currentLocks = Locks.NoLock;
         lockList = new ArrayList<>();
-        lockCount = 0;
+        //there are 10 possible lock pairs in the joint account class
+        possibleLockPairs = 10;
  }
 
     public void setCurrentLocks(Locks newLocks) {
@@ -75,8 +77,10 @@ printResults();
 
 
     public double getCoverageScore(){
-        double score=0;
+        double score;
 
+        System.out.println(getLockCount());
+        score = (lockCount/possibleLockPairs)*100;
         return score;
     }
 
